@@ -12,7 +12,8 @@ namespace BestFinanceTracker.Infrastructure.Data
         {
         }
 
-        public DbSet<Domain.Entities.Category> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +22,20 @@ namespace BestFinanceTracker.Infrastructure.Data
                 entity.HasKey(c => c.Id);
                 entity.Property(c => c.Name).IsRequired().HasMaxLength(100);
                 entity.Property(c => c.TransactionType).IsRequired();
+            });
+
+            modelBuilder.Entity<Transaction>(entity =>
+            {
+                entity.HasKey(t => t.Id);
+                entity.Property(t => t.Amount).HasPrecision(18, 2);
+                entity.Property(t => t.Date).IsRequired();
+                entity.Property(t => t.Type).IsRequired();
+                entity.Property(t => t.Description).HasMaxLength(250);
+
+                entity.HasOne(t => t.Category)
+                      .WithMany()
+                      .HasForeignKey(t => t.CategoryId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
             base.OnModelCreating(modelBuilder);
