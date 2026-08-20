@@ -14,15 +14,15 @@ public class TransactionRepository : ITransactionRepository
         _context = context;
     }
 
-    public async Task<List<Transaction>> GetAllAsync(int? year, int? month)
+    public async Task<List<Transaction>> GetAllAsync(int? year, int? month, int? categoryId = null)
     {
         var query = _context.Transactions.Include(t => t.Category).AsNoTracking().AsQueryable();
 
-        if (year.HasValue)
-            query = query.Where(t => t.Date.Year == year.Value);
+        if (year.HasValue) query = query.Where(t => t.Date.Year == year.Value);
 
-        if (month.HasValue)
-            query = query.Where(t => t.Date.Month == month.Value);
+        if (month.HasValue) query = query.Where(t => t.Date.Month == month.Value);
+
+        if (categoryId.HasValue) query = query.Where(t => t.CategoryId == categoryId.Value);
 
         return await query.OrderByDescending(t => t.Date).ToListAsync();
     }

@@ -18,7 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(connecti
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
-builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>(); 
+builder.Services.AddScoped<IBudgetRepository, BudgetRepository>();
 
 var app = builder.Build();
 
