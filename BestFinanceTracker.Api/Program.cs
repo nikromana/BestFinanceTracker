@@ -1,8 +1,8 @@
+using BestFinanceTracker.Application.Features.Categories.Commands.CreateCategory;
 using BestFinanceTracker.Application.Interfaces;
-using BestFinanceTracker.Application.Services;
 using BestFinanceTracker.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using BestFinanceTracker.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(connectionString!));
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
 
 var app = builder.Build();
 
