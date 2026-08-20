@@ -5,5 +5,5 @@ using System.Text;
 
 namespace BestFinanceTracker.Application.DTOs.Category
 {
-    public record UpdateCategoryDto(string Name, TransactionType Type);
+    public record UpdateCategoryDto(string Name, TransactionType TransactionType);
 }
