@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BestFinanceTracker.Api/BestFinanceTracker.Api.csproj" />
+  <Project Path="BestFinanceTracker.Application/BestFinanceTracker.Application.csproj" />
+  <Project Path="BestFinanceTracker.Domain/BestFinanceTracker.Domain.csproj" />
+  <Project Path="BestFinanceTracker.Infrastructure/BestFinanceTracker.Infrastructure.csproj" />
+</Solution>
