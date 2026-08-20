@@ -3,4 +3,5 @@
   <Project Path="BestFinanceTracker.Application/BestFinanceTracker.Application.csproj" />
   <Project Path="BestFinanceTracker.Domain/BestFinanceTracker.Domain.csproj" />
   <Project Path="BestFinanceTracker.Infrastructure/BestFinanceTracker.Infrastructure.csproj" />
+  <Project Path="Shared/Shared.csproj" />
 </Solution>
