@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Kategorie bearbeiten' : 'Neue Kategorie' }}</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="form" class="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="z. B. Lebensmittel">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Typ</mat-label>
+      <mat-select formControlName="type">
+        <mat-option [value]="TransactionType.Income">Einnahme</mat-option>
+        <mat-option [value]="TransactionType.Expense">Ausgabe</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Abbrechen</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">Speichern</button>
+</div>
